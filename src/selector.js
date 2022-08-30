@@ -21,49 +21,54 @@ function $(cssSelectorString) {
   // Handle when tag (has no prefix character)
   else {
     const arrayOfTags = document.getElementsByTagName(cssSelectorString);
+
     this.elements = [...arrayOfTags];
   }
 }
 
 
 ///////////////////////**** PROTOTYPE METHODS ****///////////////////////
+// All of these methods return the object instance as to allow method chaining.
+
 $.prototype.hide = function() {
-  this.elements.forEach( (element) => {
+  this.elements.forEach( element => {
     element.style.display = 'none'
   })
+  return this
 }
 
 $.prototype.show = function() {
-  this.elements.forEach( (element) => {
+  this.elements.forEach( element => {
     element.style.display = 'inherit'
-  })  
+  })
+  return this
 }
 
 $.prototype.addClassName = function( aClassName ) {
-  this.elements.forEach( (element) => {
+  this.elements.forEach( element => {
     element.classList = aClassName;
-  })    
+  })
+  return this
 }
 
 $.prototype.removeClassName = function( aClassName ) {
-  this.elements.forEach( (element) => {
+  this.elements.forEach( element => {
     element.classList.remove(aClassName)
   })
+  return this
 }
 
 $.prototype.text = function( text ) {
   this.elements.forEach( element => {
     element.innerText = text;
   })
+  return this
 }
 
 $.prototype.addChild = function (tag) {
-
-  const childNode = document.createElement(tag);
-  console.dir(childNode)
-
   this.elements.forEach( element => {
     const childNode = document.createElement(tag);
     element.appendChild(childNode)
   })
+  return this
 }
